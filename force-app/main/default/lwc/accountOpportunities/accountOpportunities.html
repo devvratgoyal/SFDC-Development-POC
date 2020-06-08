@@ -1,0 +1,30 @@
+<!--
+  @File Name          : accountOpportunities.html
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 6/7/2020, 7:00:06 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    6/6/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<template>
+    <lightning-card title="Contacts(LWC-Iterator)" icon-name="standard:contact">
+        <div class="slds-m-around_medium">
+            <template if:true={contacts.data}>
+                <template for:each={contacts.data} for:item="contact">
+                    <p key={contact.Id}>{contact.Name}</p>
+                </template>
+            </template>           
+        </div>
+    </lightning-card>
+    </br>   
+    <lightning-card title="Opportunities (LWC-DataTable)" icon-name="standard:opportunity">
+        <lightning-datatable
+            data={opportunities.data}
+            columns={columns}
+            key-field="id">
+        </lightning-datatable>
+    </lightning-card>
+</template>
