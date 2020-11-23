@@ -1,0 +1,20 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-23-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-23-2020   Dev Goyal   Initial Version
+-->
+<aura:component>
+    <aura:registerEvent name="appEvent" type="c:evt_APPEvent"/>
+    <u><b>Notifier/source Component Output</b></u>
+    <br/><br/>
+    <h1>Simple Application Event Sample</h1>
+    <p><lightning:button
+        label="Click here to fire an application event"
+        onclick="{!c.fireApplicationEvent}" />
+    </p>
+</aura:component>

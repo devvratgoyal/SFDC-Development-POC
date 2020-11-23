@@ -1,0 +1,41 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-20-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-05-2020   Dev Goyal   Initial Version
+-->
+<aura:component 
+    implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes" 
+    controller="cmp_ContactDetailPageCtrl"
+    access="global">
+
+    <aura:attribute name="contactRecord" type="Contact"/> 
+    <aura:attribute name="accountId" type="Id"/> 
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="slds-theme_default">
+        <div class="slds-grid">
+            <!-- Edit Parent (Account Record) from Contact -->
+            <div class="slds-col slds-size_1-of-2">            
+                <lightning:button variant="brand" label="Edit Account" iconName="utility:edit" iconPosition="left" title="Aura Standard Event: force:editRecord" class="slds-button slds-button--brand" onclick="{!c.editAccountRecord}"/>
+            </div>
+            <div class="slds-col slds-size_2-of-2">            
+                <lightning:button variant="brand" label="New Contact for Account" iconName="action:new_contact" iconPosition="left" title="Aura Standard Event: force:navigateToComponent" class="slds-button slds-button--brand" onclick="{!c.navigateToMyComponent}"/>
+            </div>
+        </div>
+        <br/>
+        <div class="slds-grid">       
+            <div class="slds-col slds-size_1-of-2">            
+                <lightning:button variant="Neutral" label="Go to Account" iconName="utility:back" iconPosition="left" title="Aura Standard Event: force:navigateToSObject" class="slds-button" onclick="{!c.navigateToAccountRecord}"/>
+            </div>
+            <div class="slds-col slds-size_2-of-2">            
+                <lightning:button variant="Neutral" label="Go to Account Home" iconName="standard:account" iconPosition="left" title="Aura Standard Event: force:force:navigateToObjectHome" class="slds-button" onclick="{!c.navigateToAccountHome}"/>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

@@ -1,0 +1,14 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-23-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-23-2020   Dev Goyal   Initial Version
+-->
+<aura:component>
+    <c:cmp_AENotifier/>
+    <c:cmp_AEHandler/>
+</aura:component>

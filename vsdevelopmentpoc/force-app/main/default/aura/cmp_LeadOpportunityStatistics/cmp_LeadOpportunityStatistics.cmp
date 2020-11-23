@@ -1,0 +1,52 @@
+<!--
+  @File Name          : LeadOpportunityStatistics.cmp
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 4/27/2020, 8:25:47 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    4/25/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes" access="global"
+                controller="LeadOpportunityStatistics">
+    
+    <aura:attribute name="data" type="Object" />
+    <aura:attribute name="columns" type="List" />
+    
+    <aura:attribute name="sortDirection" type="String" default="asc" />
+    <aura:attribute name="defaultSortDirection" type="String" default="asc" />
+    <aura:attribute name="sortedBy" type="String" />
+    
+    <aura:attribute name="dateValidationError" type="boolean" />
+    <aura:attribute name="dateValidationErrorMsg" type="String" default="" />
+    
+    <aura:handler name="init" value="{! this }" action="{! c.myAction }"/>
+    
+    <aura:attribute name="leadStartDate" type="Date"/>
+    <aura:attribute name="opportunityCloseDate" type="Date"/>
+
+    <div class="slds-form_horizontal slds-form slds-grid slds-wrap divbackground">
+        <lightning:input type="date" dateStyle="short" class="{! v.dateValidationError ? 'slds-has-error slds-size_1-of-2 slds-form-element_1-col' : 'slds-size_1-of-2 slds-form-element_1-col'}" name="leadStartDate" value="{!v.leadStartDate}" label="Start Date:"  onchange="{!c.validateSubmit}" />
+        <lightning:input type="date" dateStyle="short" class = "slds-size_1-of-2 slds-form-element_1-col" value="{!v.opportunityCloseDate}" label="End Date:" onchange="{!c.validateSubmit}"/>        
+   </div>
+    
+    <aura:if isTrue="{!v.dateValidationError}">
+        <div class="slds-text-color_error slds-p-left_x-small divbackground">
+            {!v.dateValidationErrorMsg}
+        </div>
+    </aura:if>  
+    
+    <lightning:datatable
+                         keyField="owner"
+                         columns="{!v.columns }"
+                         data="{!v.data}"
+                         hideCheckboxColumn="true"
+                         defaultSortDirection="{!v.defaultSortDirection}"
+                         sortedDirection="{!v.sortDirection}"
+                         sortedBy="{!v.sortedBy}"
+                         onsort="{!c.handleSort}">
+    </lightning:datatable>    
+    
+</aura:component>

@@ -1,0 +1,37 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 07-20-2020
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   07-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<aura:component controller="UploadProfilePictureCtrl" implements="flexipage:availableForAllPageTypes,force:hasRecordId">
+
+    <!-- Id of the Record the page hosting this component is showing -->
+    <aura:attribute name="recordId" type="Id"/>
+ 
+    <aura:attribute name="pictureSrc" type="String"
+            default="https://s3-us-west-1.amazonaws.com/sfdc-demo/image-placeholder.png"/>
+ 
+    <aura:attribute name="message" type="String" default="Drag profile picture here"/>
+
+    <aura:attribute name="accept" type="List" default="['.jpg', '.jpeg','.png']"/>
+    <aura:attribute name="multiple" type="Boolean" default="false"/>
+    <aura:attribute name="disabled" type="Boolean" default="false"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.onInit}" />
+
+    
+    <div ondragover="{!c.onDragOver}" ondrop="{!c.onDrop}" class="slds-spinner_container slds-is-relative"> 
+         
+        <br/>
+        <img src="{!v.pictureSrc}"/>
+        <p>{!v.message}</p>
+
+    </div>
+     
+
+</aura:component>

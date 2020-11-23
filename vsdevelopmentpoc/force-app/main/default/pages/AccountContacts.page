@@ -1,0 +1,17 @@
+<apex:page standardController="Account" standardStylesheets="false" showQuickActionVfHeader="false"  docType="html-5.0">
+    <apex:includeLightning />
+    <div id="AccountContacts"/>
+    Hi, Page loaded
+    <script>
+         $Lightning.use("c:app_AuraLightningApp", function() {
+             $Lightning.createComponent("c:cmp_AccountContacts",
+                                        {
+                                            recordId : "{!Account.Id}"
+                                        },
+                                        "AccountContacts",
+                                        function(cmp) {
+                                            console.log('component created',cmp); 
+                                        });
+         }); 
+    </script>
+</apex:page>

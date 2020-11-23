@@ -1,0 +1,52 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-22-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-05-2020   Dev Goyal   Initial Version
+-->
+<aura:component>    
+    <aura:attribute name="ContactInstance" type="Contact"/>
+    <aura:attribute name="rowIndex" type="String"/>
+    
+    <!-- Register 2 Lightning Event for handle add or Delete rows on Parent Component  
+        Name: Registration name is used on its controller to retrieve this event. Use the same name while handling at the parent component
+        type: Event type-as in the .evt file--> 
+    <aura:registerEvent name="DeleteRowCmpEvt" type="c:evt_DeleteRowEvent"/> 
+    <aura:registerEvent name="AddRowCmpEvt" type="c:evt_AddRowEvent"/> 
+    
+    <tr class="slds-text-title_caps">
+        <td> 
+            {!v.rowIndex + 1}
+        </td>
+        <td>
+            <ui:inputText class="slds-input" value="{!v.ContactInstance.FirstName}"/>
+        </td>
+        <td>
+            <ui:inputText class="slds-input" value="{!v.ContactInstance.LastName}"/>
+        </td>
+        <td>
+            <ui:inputText class="slds-input" value="{!v.ContactInstance.Email}"/>
+        </td>
+        <td>
+            <ui:inputPhone class="slds-input" value="{!v.ContactInstance.Phone}"/>
+        </td>
+        <td>
+            <aura:if isTrue="{!v.rowIndex == 0}">
+                <a onclick="{!c.AddNewRow}">
+                  <lightning:icon variant="success" iconName="utility:add" class="slds-icon slds-icon_small" size="small" alternativeText="add"/>
+                  <span class="slds-assistive-text">Add Icon</span>
+                </a>    
+              <aura:set attribute="else">
+                  <a onclick="{!c.removeRow}">
+                   <lightning:icon variant="error" iconName="utility:delete" class="slds-icon slds-icon_small" size="small" alternativeText="icon"/>
+                   <span class="slds-assistive-text">Delete Icon</span>
+                  </a>
+              </aura:set> 
+            </aura:if>
+        </td> 
+    </tr>
+</aura:component>

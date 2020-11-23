@@ -1,0 +1,148 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-23-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-05-2020   Dev Goyal   Initial Version
+-->
+<aura:component controller="AccountContactCtrl" access="global"
+                implements="force:lightningQuickAction,force:appHostable,flexipage:availableForAllPageTypes,force:hasRecordId">
+
+  <aura:attribute name="activeSections" type="List" default="['AccountSection']"/>
+
+  <!-- Account section attributes -->
+  <aura:attribute name="AccountList" type="Account[]" />
+  <aura:attribute name="selectedValue" type="String" />
+  <aura:attribute name="Account" type="Account" />
+  <aura:attribute name="AccountName" type="String" />
+  <aura:attribute name="recordId" type="Id" />
+  <!-- Account section attributes -->
+  
+  <!-- contactTable attributes-->
+  <aura:attribute name="columns" type="List" />
+  <aura:attribute name="Contacts" type="Contact[]" />
+  <aura:attribute name="selectedRow" type="Object" />
+  <aura:attribute name="totalNumberOfRows" type="Integer"/>
+  <aura:attribute name="sortedBy" type="String" default="FirstName" />
+  <aura:attribute name="sortedDirection" type="String" default="dsc" />
+  <!-- contactTable attributes-->
+
+  <!-- Unused attributes -->
+  <aura:attribute name="draftValues" type="Object" default="[]" />
+  <aura:attribute name="dataTableSchema" type="Object" />
+  <aura:attribute name="enableInfiniteLoading" type="Boolean" default="true" />
+  <aura:attribute name="loadMoreOffset" type="Integer" default="15" />
+  <aura:attribute name="rowsToLoad" type="Integer" default="15" />
+  <!-- Unused attributes -->
+
+  <aura:handler name="init" value="{!this}" action="{!c.initPageLoad}" />
+  <!-- Component event handler -->
+  <aura:handler name="DeleteRowCmpEvt" event="c:evt_DeleteRowEvent" action="{!c.RemoveRow}"/>
+  <aura:handler name="AddRowCmpEvt" event="c:evt_AddRowEvent" action="{!c.AddNewRow}"/>
+  <!-- Component event handler -->
+
+  <lightning:card>
+      <aura:set attribute="actions">
+          <lightning:buttonGroup>
+              <lightning:button onclick="{!c.handleSetActiveSectionAccount}" label="Open Account Section"/>
+              <lightning:button onclick="{!c.handleSetActiveSectionContact }" label="Open Contact Section"/>
+          </lightning:buttonGroup>
+      </aura:set>
+  </lightning:card>
+
+  <div class="slds-theme_default">
+    <lightning:accordion aura:id="accordion" allowMultipleSectionsOpen="true" activeSectionName="{!v.activeSections}">
+        
+      <lightning:accordionSection name="carouselSection" label="Carousel Accordian">
+          <lightning:carousel class="slds-carousel__image slds-carousel__image>img" disableAutoRefresh="false" disableAutoScroll="false" scrollDuration="2">
+              <lightning:carouselImage class="slds-carousel__image" src="{!$Resource.Carousel + '/carousel-01.png'}" header="First Card" description="First card description." alternativeText="First card accessible description." href="https://www.salesforce.com"></lightning:carouselImage>
+              <lightning:carouselImage class="slds-carousel__image" src="{!$Resource.Carousel + '/carousel-02.png'}" header="Second Card" description="Second card description." alternativeText="Second card accessible description." href="https://www.salesforce.com"></lightning:carouselImage>
+              <lightning:carouselImage class="slds-carousel__image" src="{!$Resource.Carousel + '/carousel-03.png'}" header="Third Card" description="Third card description." alternativeText="Third card accessible description." href="https://www.salesforce.com"></lightning:carouselImage>
+          </lightning:carousel>
+      </lightning:accordionSection>
+        
+      <lightning:accordionSection name="AccountSection" label="Account Accordian">
+          <lightning:card iconName="standard:account" title="Select Account to display Contact">
+              <lightning:select name="accountId1" aura:id="accountId" value="{!v.selectedValue}" onchange="{!c.onSingleSelectChange}">
+                  <option text="Select Account" value=""/>
+                  <aura:iteration aura:id="accountRecordId" items="{!v.AccountList}" var="option">
+                      <option text="{!option.Name}" value="{!option.Id}" selected="{!option.selected}"/>
+                  </aura:iteration>
+              </lightning:select>
+              <lightning:buttonGroup>
+                  <lightning:button label="Show Contacts" title="Show Contacts" onclick="{!c.displayContacts}"/>
+                  <lightning:button label="Show Contacts(New Page)" title="Show Contacts(New Page)" onclick="{!c.goToContactsPage}"/>
+              </lightning:buttonGroup>
+          </lightning:card>
+      </lightning:accordionSection>
+
+      <lightning:accordionSection name="ContactDTSection" label="Contacts" title="Sortable Data table with Menu and Row Button">
+        <lightning:card iconName="standard:contact" title="{! 'Contact List (' +v.totalNumberOfRows +') for '+ v.AccountName}"> 
+          <aura:set attribute="actions">   
+            <lightning:buttonGroup>
+              <lightning:button title="New Contact(Pop-up)-Standard Create Record Event" onclick="{!c.createNewContact}" label="New Contact"/>
+              <lightning:button title="Add Row" variant="brand" onclick="{!c.AddNewRow}" label="Add New Row"/>
+              <lightning:button label="Delete Contacts" variant="destructive" onclick="{!c.deleteContacts}"/>
+              <lightning:buttonMenu aura:id="menu" onselect="{!c.handleMenuItem }" alternativeText="Show menu">
+                <lightning:menuItem value="RefreshList" label="Refresh List" />
+                <lightning:menuItem value="MenuItemTwo" label="Menu Item Two" />
+                <lightning:menuItem value="MenuItemThree" label="Menu Item Three" disabled="true"/>
+                <lightning:menuItem value="MenuItemFour" label="Menu Item Four" />
+              </lightning:buttonMenu>
+            </lightning:buttonGroup>
+          </aura:set>
+          <div style="height: inherit">
+            <lightning:datatable aura:id="contactTable" showRowNumberColumn="true" hideCheckboxColumn="false" 
+            columns="{!v.columns }" data="{!v.Contacts }" keyField="Id"
+            onsave="{!c.handleContactSave }" onrowaction="{!c.handleRowAction }"
+            onsort="{!c.updateColumnSorting}" sortedBy="{!v.sortedBy}" sortedDirection="{!v.sortedDirection}"/>
+          </div>
+        </lightning:card>
+      </lightning:accordionSection>
+      
+      <lightning:accordionSection name="ContactSection" label="Contact Accordian">
+        <div class="slds-page-header">
+          <h3 class="slds-page-header__title">Create Multiple Contacts, With Add/Delete Rows Dynamically</h3>
+        </div>
+        <!-- <aura:if isTrue="{!not(empty(v.Contacts))}"> -->
+          <lightning:card iconName="standard:contact" title="{! 'Contact List for ' + v.AccountName}">
+            <!-- <lightning:datatable aura:id="contactTable1" showRowNumberColumn="true" hideCheckboxColumn="false" columns="{!v.columns }" keyField="Id"/> -->
+            <table class="slds-table slds-table_bordered slds-table_cell-buffer">
+              <thead>
+                <tr class="slds-text-title_caps">
+                  <th scope="col">
+                  <div class="slds-truncate">S.No</div>
+                </th>
+                <th scope="col">
+                  <div class="slds-truncate" title="First Name">First Name</div>
+                </th>
+                <th scope="col">
+                  <div class="slds-truncate" title="Last Name">Last Name</div>
+                </th>
+                <th scope="col">
+                  <div class="slds-truncate" title="Phone">Email</div>
+                </th>
+                <th scope="col">
+                  <div class="slds-truncate" title="Phone">Phone</div>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <aura:iteration items="{!v.Contacts}" var="item" indexVar="index">
+                <c:cmp_DynamicRowItem ContactInstance="{!item}" rowIndex="{!index}" />
+              </aura:iteration>
+            </tbody>
+          </table>
+          <aura:set attribute="actions">
+            <lightning:button title="Add Row" variant="brand" onclick="{!c.AddNewRow}" label="Add New Row"/>
+            <lightning:button variant="brand" title="Save Contacts" onclick="{!c.Save }" label="Save"/>
+          </aura:set>
+        </lightning:card>
+      <!-- </aura:if> -->
+      </lightning:accordionSection>
+    </lightning:accordion>
+  </div>
+</aura:component>

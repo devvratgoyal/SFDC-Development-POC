@@ -1,0 +1,25 @@
+.THIS {
+    text-align: center;
+    
+    background-color: white; 
+}
+ 
+.THIS > p {
+    font-size: 14px;
+    color: rgba(67, 154, 226, 0.932);
+    margin: 4px 0;
+}
+ 
+.THIS img {
+    min-height: 100px;
+    max-height: 200px;
+    max-width: 300px;
+    width: auto;
+    height: auto;
+    border-radius: 4px;
+}
+
+.THIS.slds-spinner_container {  
+    z-index: 10000;
+    position:relative;   
+  }

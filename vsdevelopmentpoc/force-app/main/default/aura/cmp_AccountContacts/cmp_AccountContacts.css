@@ -1,0 +1,14 @@
+.THIS .slds-carousel {
+    position : relative;
+    height : 100 px;
+}
+.THIS .slds-carousel__image {
+ 	   
+}
+.THIS .slds-carousel__image>img {
+    height	:	200px;
+}
+.THIS .slds-carousel__content{
+    height	:	4rem;
+    background-color : cadetblue;
+}

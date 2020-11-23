@@ -1,0 +1,21 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-23-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-23-2020   Dev Goyal   Initial Version
+-->
+<aura:component>
+    <aura:attribute name="messageFromEvent" type="String"/>
+    <aura:attribute name="numEvents" type="Integer" default="0"/>
+ 
+    <aura:handler event="c:evt_AppEvent" action="{!c.handleApplicationEvent}"/>
+        <br/><br/>
+        <u><b>Handler Output</b></u>
+        <br/><br/>
+    <p>{!v.messageFromEvent}</p>
+    <p>Number of events: {!v.numEvents}</p>
+</aura:component>

@@ -1,0 +1,25 @@
+<!--
+  @File Name          : cmp_AccountDetails.cmp
+  @Description        : 
+  @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Group              : 
+  @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
+  @Last Modified On   : 6/18/2020, 1:17:44 PM
+  @Modification Log   : 
+  Ver       Date            Author      		    Modification
+  1.0    6/18/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
+-->
+<aura:component controller="OpportunitiesService" implements="force:appHostable,force:hasRecordId,flexipage:availableForAllPageTypes" access="global">
+
+    <aura:attribute name="accountId" type="String"/>
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+
+    <aura:if isTrue="{!and(v.accountId!='',v.accountId!=null)}">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1">
+                <force:recordView recordId="{!v.accountId}"/>
+            </div>
+        </div>
+    </aura:if>
+    
+</aura:component>

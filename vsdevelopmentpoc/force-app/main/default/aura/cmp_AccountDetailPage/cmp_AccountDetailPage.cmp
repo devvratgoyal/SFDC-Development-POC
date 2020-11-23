@@ -1,0 +1,28 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 11-21-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   11-05-2020   Dev Goyal   Initial Version
+-->
+<aura:component 
+    implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+    access="global">
+    
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="slds-theme_default">
+        <div class="slds-theme_default slds-grid">
+            <!-- Create child record (Contact) from Account Detail Page using standard Event -->
+            <div class="slds-col slds-size_1-of-1">            
+                <aura:if isTrue="{!!v.isMobile}">
+                    <lightning:button variant="brand" label="New Contact" iconName="action:new_contact" iconPosition="left" title="New Contact-Aura Standard Event" class="slds-button slds-button--brand" onclick="{!c.createContactRecord}"/>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+    
+</aura:component>

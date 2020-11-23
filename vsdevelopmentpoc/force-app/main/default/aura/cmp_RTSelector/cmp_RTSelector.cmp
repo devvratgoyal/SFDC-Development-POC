@@ -1,0 +1,62 @@
+<!--
+  @description       : 
+  @author            : ChangeMeIn@UserSettingsUnder.SFDoc
+  @group             : 
+  @last modified on  : 11-20-2020
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author                               Modification
+  1.0   07-20-2020   ChangeMeIn@UserSettingsUnder.SFDoc   Initial Version
+-->
+<aura:component 
+    implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes" 
+    controller="RTSelectorCtrl" access="global">
+    
+    <aura:attribute name="isOpen" type="boolean" default="false" />    
+    <aura:attribute name="options" type="List"/>
+    <aura:attribute name="defaultContactRT" type="String"/>
+    <aura:attribute name="value" type="String" default="{!v.defaultContactRT}"/>
+
+    <aura:handler name="init" value="{!this}" action="{!c.init}"/>
+    
+    <div class="slds-theme_default">
+        <div class="slds-grid">
+            <div class="slds-col slds-size_1-of-1">                
+                <aura:if isTrue="{!!v.isMobile}">
+                    <lightning:button variant="neutral" label="New Contact" onclick="{!c.openModal}" iconName="action:new_contact" iconPosition="right" class="slds-button slds-button_neutral stdBtn slds-float_left" title="New Contact-Record Type Selection"/>
+                </aura:if>
+            </div>
+        </div>
+    </div>
+
+    <aura:if isTrue="{!v.isOpen}">
+        <div role="dialog" tabindex="-1" aria-labelledby="header43" class="modal-glass slds-backdrop fadein slds-backdrop--open panel slds-modal slds-fade-in-open" >
+            <div class="slds-modal__container">
+                <div class="slds-modal__header">
+                    <button class="slds-button slds-modal__close slds-button--icon-inverse" title="Close" onclick="{!c.closeModal}">
+                        X<span class="slds-assistive-text">Cancel</span>
+                    </button>
+                    <h2 id="header43" class="slds-text-heading--medium">Contact Record Type</h2>
+                </div>
+                <div class="slds-modal__content slds-p-around--medium">
+                    <div class="slds-grid slds-wrap">
+                        <div class="slds-size--1-of-2 slds-large-size--1-of-2">
+                             <div class="slds-align--absolute-center">Select a record type</div>                            
+                        </div>
+                        <div class="slds-size--1-of-2 slds-large-size--1-of-2">
+                            <lightning:radioGroup aura:id="RTLabel" name="radioGroup"
+                              options="{! v.options }"
+                              value="{! v.value }"
+                              type="radio"/>
+                        </div>&nbsp; &nbsp;
+                    </div>                   
+                </div>
+                <div class="slds-modal__footer">
+                    <lightning:button class="slds-button slds-button--neutral" onclick="{!c.closeModal}">Cancel</lightning:button>
+                    <lightning:button class="slds-button slds-button--brand" onclick="{!c.createContactRecord}">Next</lightning:button>
+                </div>
+            </div>
+        </div>
+    </aura:if>
+
+</aura:component>
