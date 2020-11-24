@@ -9,7 +9,7 @@
   1.0   11-23-2020   Dev Goyal   Initial Version
 -->
 <aura:component>
-    <aura:registerEvent name="appEvent" type="c:evt_APPEvent"/>
+    <aura:registerEvent name="appEvent" type="c:evt_AppEvent"/>
     <u><b>Notifier/source Component Output</b></u>
     <br/><br/>
     <h1>Simple Application Event Sample</h1>
