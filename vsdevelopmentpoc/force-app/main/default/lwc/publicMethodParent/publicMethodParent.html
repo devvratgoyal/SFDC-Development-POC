@@ -1,0 +1,14 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 10-27-2021
+  @last modified by  : Dev Goyal
+-->
+<template>
+    <lightning-card title="Call child method from parent">
+      <lightning-input label="Parent Text Value" value={textInput} onchange={inputChangeHandler}></lightning-input>
+      <div>This is div in parent component.</div>
+        <c-public-method-child></c-public-method-child>
+    </lightning-card>    
+</template>

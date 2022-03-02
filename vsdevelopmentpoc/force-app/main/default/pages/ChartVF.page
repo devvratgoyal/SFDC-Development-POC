@@ -1,0 +1,12 @@
+<apex:page controller="ChartController">
+    <apex:chart data="{!Opportunities}" width="600" height="400">
+        <apex:axis type="Numeric" position="left" fields="Name" title="Opportunities"/>
+        <apex:axis type="Numeric" position="bottom" fields="Amount" title="Amount"/>
+        <apex:barSeries orientation="horizontal" axis="bottom" 
+            xField="Name" yField="Amount"/>
+    </apex:chart>
+    <apex:dataTable value="{!Opportunities}" var="opp">
+        <apex:column headerValue="Opportunity" value="{!opp.name}"/>
+        <apex:column headerValue="Amount" value="{!opp.amount}"/>
+    </apex:dataTable>
+</apex:page>

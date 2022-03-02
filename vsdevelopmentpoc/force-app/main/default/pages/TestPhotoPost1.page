@@ -1,0 +1,145 @@
+<apex:page Controller="testPhotoPostController1">
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7/jquery.js"/>
+<script src="http://malsup.github.com/jquery.form.js"/>
+
+<script>
+function showUrl()
+{
+    //alert('test');
+    collectURL();
+}
+
+function PostItNow()
+{   
+    //alert('test2');
+    //var postingBtn=document.getElementById('btnPost');
+    //postingBtn.click();
+    
+    setAlbumCover();
+}
+
+
+function setAlbumCover()
+{
+    //document.getElementById('lbl_album_msg').innerHTML='';
+    alert('1');
+    if(window.XMLHttpRequest)
+    {
+        xmlhttp= new XMLHttpRequest();
+    }
+    else
+    {
+        xmlhttp= new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    
+    xmlhttp.onreadystatechange=function()
+    {
+    alert(xmlhttp.status);
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            var res = xmlhttp.responseText;
+            alert(res);
+            //document.getElementById('lbl_album_msg').innerHTML='Image set to the album cover';
+        }
+        else
+            alert('4');
+    }
+        alert('2');
+    //var url="Action=set_cover&Id="+id+"&ImageId="+imgId;
+    var url= document.getElementById('txtUrl').value;
+        alert(url);
+    xmlhttp.open("POST",url,true);
+    var contentType = "multipart/form-data";
+    xmlhttp.setRequestHeader("Content-Type", contentType);
+    xmlhttp.send(); 
+}
+</script>
+
+<script>
+
+// prepare the form when the DOM is ready 
+$(document).ready(function() {
+
+    $('#btnPost').click( function() {
+
+    var final= document.getElementById('txtUrl').value
+    
+   // alert(final)
+    var options = { 
+        //target:        #output1,   // target element(s) to be updated with server response 
+        beforeSubmit:  showRequest,  // pre-submit callback 
+        success:       showResponse,  // post-submit callback 
+        //url: 'https://graph.facebook.com/272794492829192/photos?message=testing+photo&access_token=AAACEdEose0cBAAZCWrdB0ljvPrQBDrAAqPwba3EQkMvqQs3TXdo350ht4OZBOZBMF8MVR1cBncUhknXucVCMZBLJhf9auXCf5CsgqXm6eZCnZAxs9yWb0v'
+        url: final
+    }; 
+ 
+    // bind form using 'ajaxForm'
+    $('#testForm').ajaxForm(options);
+}); 
+}); 
+
+// pre-submit callback 
+function showRequest(formData, jqForm, options) { 
+    var queryString = $.param(formData); 
+
+    //alert('About to submit: \n\n' + queryString); 
+    document.getElementById('divUploading').style.display="block";
+    return true; 
+} 
+ 
+// post-submit callback 
+function showResponse(responseText, statusText, xhr, $form)  { 
+    document.getElementById('divUploading').style.display="none";
+    alert(responseText);
+    //alert('status: ' + statusText + '\n\nresponseText: \n' + responseText + '\n\nThe output div should have already been updated with the responseText.'); 
+        
+        window.location.reload(true);
+}
+
+</script>
+
+
+        <!-- Collect a favorite number from the user -->
+
+<!--
+<form id="testForm" method="post" enctype="multipart/form-data">
+  <input id="source" name="source" type="file"/>
+  <input id="btnPost" name="btnPost" type="submit" value="posting" style="display:none;"/>
+  <input name="btnPostImg" type="button" value="Post Image" onclick="showUrl();"/>
+</form>-->
+<div style="background:#f3f3f3;">
+    <apex:form >
+    <apex:actionFunction name="collectURL" action="{!postOnWall}" reRender="urlText" oncomplete="PostItNow();"/>
+    
+    <table>
+        <tr>
+            <td>Message :</td>
+            <td><apex:inputtextarea value="{!message}"/></td>
+        </tr>    
+    </table>
+    </apex:form>
+    <form id="testForm" method="post" enctype="multipart/form-data">
+        <table>
+            <tr>
+                <td>Select File :</td>
+                <td><input id="source" name="source" type="file"/></td>
+            </tr>
+            <tr>
+                <td>        <input id="btnPost" name="btnPost" type="submit" value="posting" style="display:none;"/></td>
+            </tr>    
+        </table>
+    </form>
+
+<div>
+    <input name="btnPostImg" class="btn" type="button" value="Post" onclick="showUrl();"/>
+</div>
+<div id='divUploading' style="display:none;">
+    <img src="/img/loading.gif"/>    Uploading...
+</div>
+ 
+</div>
+
+<apex:outputPanel id="urlText">
+    <input type="text" id="txtUrl" value="{!finalURL}" style="display:none;"/>
+</apex:outputPanel>
+</apex:page>

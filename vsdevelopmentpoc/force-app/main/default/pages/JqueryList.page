@@ -1,0 +1,59 @@
+<apex:page sidebar="false">
+	<style type="text/css"> 
+		#flip{
+			padding:5px;
+			text-align:center;
+			background-color:#e5eecc;
+			border:solid 1px #c3c3c3;
+		}
+		.grandParent{
+			padding:5px;
+		}
+		.parent{
+			padding:5px;
+		}
+		.child{
+			padding:5px;
+		}
+  	</style>
+  	
+  	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js">
+	</script>
+	<script> 
+		$(document).ready(function(){
+		  $("li").click(function() {
+		  		alert($(this).children());
+		        $(this).children().hide();
+		    });
+		});
+	</script>
+
+  	<div id="flip">Example List</div>
+  	
+  	<table>
+  		<ul>
+  			<li>Alphabets</li>
+  			<ul>
+  				<li>Capital</li>
+  				<ul>
+	  				<li>A</li>  				
+	  				<li>B</li>
+	  				<li>C</li>				
+	  			</ul>  				
+  				<li>Small</li>  				
+  			</ul>
+  			<li>Counting</li>
+  			<ul>
+  				<li>1</li>
+  				<li>2</li>
+  				<li>3</li>	
+  			</ul>
+  			<li>Table of 5</li>
+  			<ul>
+  				<li>5</li>
+  				<li>10</li>
+  				<li>15</li>	
+  			</ul>
+  		</ul>
+  	</table>
+</apex:page>

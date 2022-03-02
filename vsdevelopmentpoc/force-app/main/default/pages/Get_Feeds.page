@@ -1,0 +1,15 @@
+<apex:page standardController="Facebook_Pages__c" extensions="GetPage_Messages_Likes_Comments" action="{!getMessage_Likes_Comments}">
+    <font style="color:red;font-size:12px"> <b> <apex:messages /> </b></font>
+    <apex:form >
+        <apex:pageBlock >
+        <apex:inputHidden value="{!Facebook_Pages__c.Facebook_ID__c}"/>
+        <apex:inputHidden value="{!Facebook_Pages__c.Facebook_User__c}"/>
+        <apex:inputHidden value="{!Facebook_Pages__c.Name}"/>
+        <apex:inputHidden value="{!Facebook_Pages__c.Last_Feed__c}"/>
+        <apex:outputText rendered="{!Imessage!=null}" value="Problem: {!Imessage}"/>
+            <apex:pageBlockSection title="Facebook Data in JSON Format">
+        {!printData}                        
+            </apex:pageBlockSection> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

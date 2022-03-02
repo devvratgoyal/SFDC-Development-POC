@@ -1,0 +1,13 @@
+<apex:page standardController="Facebook_User__c" extensions="GetFacebookUsers_Feeds" action="{!getFacebookUsers_Data}" >
+    <apex:pageMessages /> 
+    <apex:form >
+        <apex:pageBlock >
+        <apex:inputHidden value="{!Facebook_User__c.User_ID__c}"/>
+        <apex:inputHidden value="{!Facebook_User__c.Access_Token__c}"/>
+        <apex:outputText rendered="{!Imessage!=null}" value="Problem: {!Imessage}"/>
+            <apex:pageBlockSection title="Facebook Data in JSON Format">
+        {!printData}                        
+            </apex:pageBlockSection> 
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

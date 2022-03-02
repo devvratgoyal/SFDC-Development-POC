@@ -1,0 +1,8 @@
+<apex:page standardController="Facebook_User__c">
+    <apex:form >
+        <apex:pageBlock >
+        	<apex:inputField value="{!Facebook_User__c.Email__c}"/>
+        	<apex:commandButton value="Save" action="{!save}"/>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>

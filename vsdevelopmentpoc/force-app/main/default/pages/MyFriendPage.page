@@ -1,0 +1,17 @@
+<apex:page controller="TestController" action="{!testMethod2}" sidebar="false">
+    <apex:pageBlock title="My Friends">
+    <apex:pageBlockTable value="{!myAllFriends}" var="myFriend" id="theTable" rowClasses="odd,even"
+
+                        styleClass="tableClass">
+
+                <apex:column >
+                        <apex:facet name="header">First Name</apex:facet>
+                        <apex:outputText value="{!myFriend.Fname__c}"/>
+                </apex:column>
+                <apex:column >
+                        <apex:facet name="header">Last Name</apex:facet>
+                        <apex:outputText value="{!myFriend.Lname__c}"/>
+                </apex:column>
+    </apex:pageBlockTable>
+    </apex:pageBlock>
+</apex:page>

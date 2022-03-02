@@ -1,0 +1,19 @@
+<apex:page controller="testPhotoPostController">
+
+<apex:pageMessages />
+
+Post on account user wall if public
+
+<apex:form >
+<div>{!responseData}</div>
+    <apex:commandButton action="{!postIt}" value="Simple Post"/>
+</apex:form>
+
+
+
+<apex:outputPanel id="x">
+    
+</apex:outputPanel>
+
+
+</apex:page>

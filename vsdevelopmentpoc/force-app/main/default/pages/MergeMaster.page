@@ -1,0 +1,14 @@
+<apex:page sidebar="false" controller="MergeMaster">
+	<apex:form >
+		<apex:pageBlock title="Merge Master" mode="edit">
+			 <apex:outputPanel id="out"/>
+			 <apex:pageBlockButtons >
+                <apex:commandButton action="{!replaceLookup}" value="Replace"/>
+            </apex:pageBlockButtons>
+            <apex:pageBlockSection title="Please provide inputs" columns="2">
+                <apex:inputText label="Field Type" value="{!fieldType}"/>
+                <apex:inputFile value="{!fileContent}" filename="{!fileName}" accept="text/csv"/>                
+            </apex:pageBlockSection>
+		</apex:pageBlock>
+	</apex:form>
+</apex:page>

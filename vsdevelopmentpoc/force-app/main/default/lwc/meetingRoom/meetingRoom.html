@@ -1,0 +1,24 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 10-29-2021
+  @last modified by  : ChangeMeIn@UserSettingsUnder.SFDoc
+-->
+<template>
+    <template if:true={showRoomInfo}>
+        <div class="slds-p-around_medium lgc-bg" onclick={tileClickHandler}>
+            <!--<lightning-tile label={meetingRoomInfo.roomName} href="/path/to/somewhere">-->
+            <!-- Use of tile with js public property 'meetingRoomInfo' being set from parent  -->
+            <!-- <lightning-tile label={meetingRoomInfo.roomName} href="/path/to/somewhere">
+                <p class="slds-truncate" title={meetingRoomInfo.roomCapacity}>Room Capacity : {meetingRoomInfo.roomCapacity}</p>
+            </lightning-tile> -->
+            <!-- Alternatively Use of tile with getter from js controller -->
+            <lightning-tile label={roomNameStr} href="/path/to/somewhere">
+                <p class="slds-truncate" title={meetingRoomInfo.roomCapacity}>Room Capacity : {meetingRoomInfo.roomCapacity}</p>
+            </lightning-tile>
+            <!-- <slot name="roomInfo"></slot>
+            <slot></slot>-->
+        </div>
+    </template>
+</template>

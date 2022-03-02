@@ -1,0 +1,21 @@
+<apex:page controller="LinkedInStudio" sidebar="false">     
+   	<apex:form id="theForm">
+	    <apex:messages id="msgs" styleClass="Messages"/>
+	    <table width="100%">
+	        <tr>
+	            <td align="left">
+	                <apex:image url="{!URLFOR($Resource.LinkedInLogo)}" width="200" height="60"/>
+	            </td>
+	            <br/>
+	            <td align="left">	                           
+	                <apex:commandButton rendered="{!userAuthorized}" value="Get Profile Data" title="Get Profile Data" action="{!getProfileData}"/>	                
+	            </td>
+	        </tr>
+	    </table>
+	    <apex:outputPanel rendered="{!!userAuthorized}">
+	    	<br/><br/><br/><br/>
+	        <b>Please click <apex:commandLink style="color:blue" action="{!reDirectToAuthenticateUser}">here.</apex:commandLink><br/> 
+	        to go to the authorization page.</b>
+	    </apex:outputPanel>
+    </apex:form>
+</apex:page>

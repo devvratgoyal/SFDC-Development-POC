@@ -1,0 +1,30 @@
+<apex:page renderAs="pdf" showHeader="false" sidebar="false" standardStylesheets="false" applyBodyTag="false" applyHtmlTag="false">
+<html>
+<head>
+    <style>
+        @page {
+            size: letter;
+            margin: 25mm;
+            @top-center {
+                content: "Sample";
+            }
+            @bottom-center {
+                content: "Page " counter(page) " of " counter(pages);
+            }
+        }
+        .page-break {
+            display:block;
+            page-break-after:always;
+        }
+        body {
+            font-family: Arial Unicode MS;
+        }
+    </style>
+</head>
+<body>
+<div class="page-break">Page A</div>
+<div class="page-break">Page B</div>
+<div>Page C</div>
+</body>
+</html>
+</apex:page>

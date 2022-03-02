@@ -1,0 +1,27 @@
+<apex:page controller="WeekController" tabstyle="account">
+<!--  <apex:page standardcontroller="Account" tabstyle="account" renderAs="{!Account.pdf__c}">-->
+	<apex:messages />
+	<apex:form >
+		<!--  <apex:repeat value="{!daysOfTheWeek.days}" var="oneDay">
+			<apex:outputPanel>
+				<apex:inputCheckbox value="{!oneDay.checked}"/>
+				<apex:outputLabel value="{!oneDay.dayLabel}"/>
+			</apex:outputPanel>
+			<br/>
+		</apex:repeat>
+		{!out}
+		<apex:outputText value="{!statusMessage}"/>  
+		<apex:inputText value="{!input}" required="true"/>
+		<apex:commandButton value="Go" action="{!Go}" immediate="true"/>-->
+	<apex:pageBlock id="pgId">
+		<!--  <apex:pageBlockTable value="{!Account.contacts}" var="contact">
+		<apex:outputText value="{!Account.Name}"/>
+			<apex:column value="{!contact.Name}"/>
+		</apex:pageBlockTable>
+		<apex:commandButton value="Call my stuff" action="{!doMyStuff}" rerender="pgId"/>
+		-->
+		<apex:outputText value="{!statusMessage}"/>
+	</apex:pageBlock>
+	</apex:form>
+	<!--  <apex:outputText value="{!$user.firstname + ' ' + $user.lastName}"/>-->
+</apex:page>

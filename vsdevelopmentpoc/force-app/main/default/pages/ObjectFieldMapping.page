@@ -1,0 +1,17 @@
+<apex:page controller="ObjectFieldMapping" showHeader="true" sidebar="false" action="{!getObjectFieldInfo}">
+    <apex:form >
+        <apex:actionFunction name="selectObject" action="{!fetchObject}"/>
+        <apex:pageBlock title="All Objects">
+            <apex:selectList value="{!objectName}" size="1" onchange="selectObject()">
+                <apex:selectOptions value="{!listObjectName}"/>
+            </apex:selectList>
+        </apex:pageBlock>
+        <apex:pageBlock title="All Objects">
+            <apex:pageBlockTable value="{!listObjectFieldWrapper}" var="wrapperObj">        
+                <apex:column headerValue="Object Label" value="{!wrapperObj.objectLabel}"/>
+                <apex:column headerValue="Object Name" value="{!wrapperObj.objectAPIName}"/>
+                <apex:column headerValue="Field Map" value="{!wrapperObj.fielddMap}"/>
+            </apex:pageBlockTable>
+        </apex:pageBlock>
+    </apex:form>  
+</apex:page>

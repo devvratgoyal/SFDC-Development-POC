@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ApexPage xmlns="http://soap.sforce.com/2006/04/metadata">
+    <apiVersion>31.0</apiVersion>
+    <availableInTouch>true</availableInTouch>
+    <confirmationTokenRequired>false</confirmationTokenRequired>
+    <label>TestPage</label>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>5</minorNumber>
+        <namespace>ENZ</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>13</majorNumber>
+        <minorNumber>3</minorNumber>
+        <namespace>gii</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>20</minorNumber>
+        <namespace>scanbizcards</namespace>
+    </packageVersions>
+    <packageVersions>
+        <majorNumber>1</majorNumber>
+        <minorNumber>16</minorNumber>
+        <namespace>sf_chttr_apps</namespace>
+    </packageVersions>
+</ApexPage>

@@ -1,0 +1,15 @@
+<apex:page standardController="OAuthService__c">
+	<apex:form >
+	    <apex:pageBlock title="New Linked In User">  
+            <apex:pageblocksection columns="2">  
+                <apex:repeat value="{!$ObjectType.OAuthService__c.FieldSets.New_LinkedIn_User}" var="userObj">  
+                        <apex:inputfield value="{!OAuthService__c[userObj]}"/>
+            	</apex:repeat>
+        	</apex:pageblocksection>
+        	<apex:pageBlockButtons location="bottom">
+	        	<apex:commandButton value="Save" action="{!save}"/>
+	        	<apex:commandButton value="Cancel" action="{!cancel}"/>
+	        </apex:pageBlockButtons>
+    	</apex:pageblock>
+	</apex:form> 
+</apex:page>

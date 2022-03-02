@@ -1,0 +1,3 @@
+<apex:page standardController="Facebook_User__c">   
+<apex:detail subject="{!Facebook_User__c.ID}" relatedList="true" showChatter="true"/>
+</apex:page>

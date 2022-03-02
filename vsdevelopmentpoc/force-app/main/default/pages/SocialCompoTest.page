@@ -1,0 +1,13 @@
+<apex:page >
+<br/>Profile pic tag:<br/>
+      <c:FacebookProfilePicture fbid="a009000000292wk" clientid="159385220794118" width="60" height="60" />
+
+<br/>Facebook like tag:<br/>
+<c:FacebookLike />
+
+<br/>Facebook recommendations tag:<br/>
+<c:FacebookRecommendations />
+
+<br/>Facebook Activities tag:<br/>
+<c:FacebookActivity />
+</apex:page>

@@ -1,0 +1,25 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 10-25-2021
+  @last modified by  : Dev Goyal
+-->
+<template>
+    <lightning-card title="Rooms Info">
+        <ul>
+            <template for:each={meetingRoomsInfo} for:item="room">
+                <li key={room.roomName} style="padding: 10px">
+                    <!-- <c-meeting-room meeting-room-info={room} show-room-info></c-meeting-room> -->
+                    <c-meeting-room show-room-info>
+                        <lightning-tile label={room.roomName} href="/path/to/somewhere">
+                            <p class="slds-truncate" title={room.roomCapacity}>Room Capacity : {room.roomCapacity}</p>
+                        </lightning-tile>
+                        <div>Unnamed slot ark up goes here.</div>
+                        <div>Copyright @Dev Goyal</div>
+                    </c-meeting-room>
+                </li>
+            </template>
+        </ul>
+    </lightning-card>
+</template>

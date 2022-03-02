@@ -1,0 +1,34 @@
+<!--
+  @description       : 
+  @author            : Dev Goyal
+  @group             : 
+  @last modified on  : 10-06-2021
+  @last modified by  : Dev Goyal
+  Modifications Log 
+  Ver   Date         Author      Modification
+  1.0   10-06-2021   Dev Goyal   Initial Version
+-->
+<template>
+    <lightning-card title="Conditional Rendering (LWC)" icon-name="custom:custom14">
+
+        <lightning-input type="checkbox" label="Show Cities" onchange={toggleDiv}>
+        </lightning-input>
+        <template if:true={displaydiv}>
+            <div>Here is the list.</div>
+        </template>
+
+        <h>Below is an example of 'for:each'</h>
+        <template for:each={cityList} for:item="city">
+            <p key={city}>{city}</p>
+        </template>
+        
+        <h>Below is an example of 'iterator'</h>
+        <template iterator:it={cityList}>
+            <template if:true={it.first}>
+                <div key={it.value}>{it.value} is the best city.</div>
+            </template>
+            <p key={it.value}>{it.value}</p>
+        </template>
+    </lightning-card>
+    
+</template>

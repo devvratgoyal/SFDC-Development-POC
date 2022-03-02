@@ -1,0 +1,22 @@
+<apex:page Controller="TestController">
+<apex:form ><!-- Begin Default Content REMOVE THIS -->
+<h1>Congratulations</h1>
+<apex:includeLightning />
+ <script>
+      // Here 'VfApp' Is Lightning Application Name
+    $Lightning.use("c:TestLightningApp", function() {
+      /* 'TestLightningApp' is Lightning Component Name which we are Displaying In Vf Page 
+       * syntax for create lightning component dynamically :
+       * $Lightning.createComponent(String type, Object attributes, String locator, function callback) */
+    $Lightning.createComponent("c:LightiningComponentStartPage",{},"lightning-LightiningComponentStartPage",
+    function(component) {
+        
+    });
+ });
+ </script>
+This is your new Page
+  
+<!-- End Default Content REMOVE THIS -->
+
+</apex:form>
+</apex:page>

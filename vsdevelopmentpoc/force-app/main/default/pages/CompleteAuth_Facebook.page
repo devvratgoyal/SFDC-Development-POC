@@ -1,0 +1,9 @@
+<apex:page controller="FacebookAuthenticateUser" action="{!completeAuthorization}" sidebar="false">
+  <apex:form >
+    <h1>Congratulations</h1>
+    You have successfully generated the auth code for the user. Please copy the below auth code or from the url.
+    <br/><br/>      
+    <h1>Auth Code : </h1>
+    <apex:outputText value="{!$CurrentPage.parameters.code}"/>
+  </apex:form>
+</apex:page>

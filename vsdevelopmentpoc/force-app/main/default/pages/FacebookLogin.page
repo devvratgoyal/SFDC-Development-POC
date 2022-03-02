@@ -1,0 +1,7 @@
+<apex:page controller="FacebookStandardController" action="{!login}">
+<apex:form >
+	Authorization is complete for &nbsp;<apex:outputLink value="/{!recordID}" id="theLink"> {!appName}</apex:outputLink>. 
+	
+	Click the link to return to the record.
+</apex:form>
+</apex:page>

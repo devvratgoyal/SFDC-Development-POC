@@ -1,0 +1,33 @@
+<apex:page controller="SelectionExample" sidebar="false">
+<apex:form >
+	<apex:pageBlock id="msc" title="Select Available Values" mode="edit" >	 
+		<apex:pageBlockSection columns="1" id="selectValuePBSectionId">
+		  <apex:pageblockSectionItem id="selectValuePBSectionItemId">
+				<apex:panelGrid columns="3" id="multiselect" styleClass="gridPanelColumn1">
+					<apex:outputLabel ><div class='centerMe100'><strong>Available</strong></div></apex:outputLabel>
+					<apex:outputLabel ></apex:outputLabel>
+					<apex:outputLabel ><div class='centerMe100'><strong>Selected</strong></div></apex:outputLabel>
+					<apex:selectList id="sel1" value="{!msleftselected}" multiselect="false" style="width:125px" size="8">
+						<apex:selectOptions value="{!leftSelected}" />						   
+					</apex:selectList>
+					
+					<apex:panelGroup >
+						<br/>
+						<p align="center" style="width: 100px;">
+							<apex:commandButton id="select" action="{!selectClick}" value=">" status="mscStatus" rerender="msc"/>
+						<br/><br/>
+							<apex:commandButton id="deselect" action="{!unselectClick}" value="<" status="mscStatus" rerender="msc"/>
+						</p>						
+						<br/><br/>           
+						<apex:actionStatus id="mscStatus" startText="Please wait..." stopText="" />
+						<br/>
+					</apex:panelGroup>
+					<apex:selectList id="sel2" value="{!msrightselected}" multiselect="false" style="width:125px" size="8">
+						<apex:selectOptions value="{!rightSelected}" />						
+					</apex:selectList>
+			  </apex:panelGrid>   
+		   </apex:pageblockSectionItem>                           
+		</apex:pageBlockSection>
+	</apex:pageBlock>
+</apex:form>
+</apex:page>

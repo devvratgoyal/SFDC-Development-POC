@@ -1,0 +1,21 @@
+<apex:page sidebar="false" showHeader="false" controller="CreateMovieController">
+  <apex:form >
+  
+  <apex:pageBlock title="Create New Movie     ">
+  <apex:pageBlockButtons >
+        <apex:commandButton action="{!save}" value="Save1"/>
+  </apex:pageBlockButtons>
+  Movie            Name :                   <apex:inputField value="{!movieObj.Name}"/>
+  
+  <br/>
+  
+  Movie Director: <apex:inputField value="{!movieObj.Director__c}"/>
+  
+  <br/>
+  
+  Movie Producer: <apex:inputField value="{!movieObj.Producer__c}"/>  
+  </apex:pageBlock>
+  
+</apex:form>  
+  
+</apex:page>

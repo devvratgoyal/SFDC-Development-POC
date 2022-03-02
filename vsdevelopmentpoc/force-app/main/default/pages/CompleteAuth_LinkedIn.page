@@ -1,0 +1,23 @@
+<apex:page controller="LinkedInAuthenticateUser" action="{!completeAuthorization}" sidebar="false">
+    <style type="text/css">
+        .Messages { color: red; font-weight: strong;}
+        .Width400 {width:400px; font:black;white-space:nowrap;font-weight: strong;}
+        .Width200 {width:200px; font:black;white-space:nowrap;font-weight: strong;}
+        .Width50 {width:50px; font:black;white-space:nowrap;font-weight: strong;}
+    </style>    
+    <apex:form id="theForm">
+    <apex:messages id="msgs" styleClass="Messages"/>
+    <table width="100%">
+        <tr>
+            <td align="left">
+                <apex:image url="{!URLFOR($Resource.LinkedInLogo)}" width="200" height="60"/>
+            </td>            
+        </tr>
+    </table>
+    <apex:outputPanel rendered="{!userAuthorized}">
+    <br/><br/><br/><br/>
+        <b>All good. You've successfully authenticated and authorized with LinkedIn</b><br/><br/>
+        <apex:commandButton value="Go To Service" title="Go To Service" action="{!goToService}"/>
+    </apex:outputPanel>
+    </apex:form>
+</apex:page>
