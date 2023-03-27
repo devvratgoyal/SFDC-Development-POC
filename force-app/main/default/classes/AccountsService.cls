@@ -4,7 +4,7 @@
  * @Author             : ChangeMeIn@UserSettingsUnder.SFDoc
  * @Group              : 
  * @Last Modified By   : ChangeMeIn@UserSettingsUnder.SFDoc
- * @Last Modified On   : 6/7/2020, 9:15:12 PM
+ * @Last Modified On   : 08-17-2022
  * @Modification Log   : 
  * Ver       Date            Author      		    Modification
  * 1.0    6/6/2020   ChangeMeIn@UserSettingsUnder.SFDoc     Initial Version
@@ -37,4 +37,7 @@ public with sharing class AccountsService {
         return null;
     }
     
+    public void selectAsset(){
+        list<Asset> listAssets = [select id, Name, AssetLevel from Asset];
+    }
 }
